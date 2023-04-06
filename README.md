@@ -6,7 +6,7 @@ If you don't have access with the repo, you can get in touch with the EIDF servi
 
 # EIDF EPCC Cluster -- Guide for new users
 
-A guide to onboarding new users.
+A guide to onboarding new users. Before applying for an account, please get in touch with the EIDF service desk (see the contact information at https://www.ed.ac.uk/edinburgh-international-data-facility/services/computing/gpu-cluster) and ask them whether it's fine to apply for an account, since at the moment the cluster is only for "early adopters" and there are several rough corners.
 
 ## New User Sign Up to EIDF
 
