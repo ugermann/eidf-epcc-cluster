@@ -58,7 +58,7 @@ Full Documentation on signing up at [EIDF Documentation](https://epcced.github.i
 ## New User Login
 
 1. Use the VDI as on initial login, save for changing password
-2. Optional use the EIDF Gateway ssh -J <account>@eidf-gateway.epcc.ed.ac.uk <account>@10.24.5.121
+2. Optional use the EIDF Gateway ssh -J USERNAME@eidf-gateway.epcc.ed.ac.uk USERNAME@10.24.5.121
 
 ## Kubectl get nodes
 
