@@ -64,6 +64,7 @@ ssh -J USERNAME@eidf-gateway.epcc.ed.ac.uk USERNAME@10.24.5.121
 ```
 
 ## Kubectl get nodes
+( *NB*: This currently fails, but is not needed)
 
 1. Run `kubectl get nodes`
 2. Output should look like:
