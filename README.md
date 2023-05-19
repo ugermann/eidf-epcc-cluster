@@ -168,3 +168,7 @@ number of bodies = 512000
 = 7439.679 double-precision GFLOP/s at 30 flops per interaction
 ```
 10. delete your pod with `kubectl delete pod sample-7gdtb`
+	
+## Running your own experiments
+	
+Follow [this](https://github.com/AntreasAntoniou/minimal-ml-template/tree/main/kubernetes) guide to get started.
