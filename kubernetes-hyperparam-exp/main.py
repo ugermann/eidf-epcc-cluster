@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import argparse
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+
+import pprint
+
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 
@@ -71,11 +76,24 @@ def test(model, device, test_loader):
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
 
+def get_hyperparameters(job_id):
+    # Update file name with correct path
+    with open("hyperparams.yml", 'r') as stream:
+        hyper_param_set = yaml.load(stream)
+    print("\nHypermeter set for job_id: ",job_id)
+    print("------------------------------------")
+    pprint.pprint(hyper_param_set[job_id-1]["hyperparam_set"])
+    print("------------------------------------\n")
+
+    return hyper_param_set[job_id-1]["hyperparam_set"] 
 
 def main():
+    job_id = int(os.environ['JOB_ID'])
+    hyperparams = get_hyperparameters(job_id)
+
     # Training settings
     parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
-    parser.add_argument('--batch-size', type=int, default=64, metavar='N',
+    parser.add_argument('--batch-size', type=int, default=hyperparams['batch_size'], metavar='N',
                         help='input batch size for training (default: 64)')
     parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
                         help='input batch size for testing (default: 1000)')
