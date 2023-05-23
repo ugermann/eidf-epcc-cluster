@@ -1,3 +1,5 @@
+This guide is an update and adaptation of [this other guide](https://developer.nvidia.com/blog/kubernetes-ai-hyperparameter-search-experiments/) to the EIDF cluster -- at the moment EIDF does not have shared storage, and the NFS-related part of the other guide may not be directly applicable.
+
 # Kubernetes for ML/NLP Experiments
 
 ![image](https://github.com/EdinburghNLP/eidf-epcc-cluster/assets/227357/60cc6f3e-6bf2-4508-9b74-05ddadc028c0)
