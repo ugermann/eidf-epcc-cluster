@@ -47,11 +47,7 @@ Open the file `generate_hyperparam_combinations.py` and update the `hyper_params
 
 ```python
 hyper_params = {
-   'max_learning_rate': [0.4, 0.6],
-   'data_aug_cutout_size': [5, 12],
-   'batch_size': [128, 512],
-   'momentum': [0.9, 0.99],
-   'batch_norm': ['on']
+    'batch_size': [32, 64, 128, 512],
 }
 ```
 
