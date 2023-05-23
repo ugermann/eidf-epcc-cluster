@@ -146,3 +146,9 @@ env:
 
 In the template is a unique placeholder called `$ITEM`. Running the `create_jobs.sh` script (as shown below) expands the template into multiple Job specification files, one for each hyperparameter set to be trained on. `$ITEM` in each generated Job specification file will replaced by a unique Job number.
 
+```bash
+> cd ~/workspace/eidf-kubernetes-example 
+> ./create-jobs.sh 4
+> ls hyperparam-jobs-specs 
+README.md	mnist-job-1.yml	mnist-job-2.yml	mnist-job-3.yml	mnist-job-4.yml
+```
