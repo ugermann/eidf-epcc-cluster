@@ -43,7 +43,7 @@ Assuming you’ve already started by setting up a Kubernetes cluster, our soluti
 
 ## Step 1: Specify the Hyperparam Search Space
 
-Open the file `generate_hyperparam_combinations.py` and update the `hyper_params` variable to specify the hyperparameter space that you wish to cover. You can specify specific values, ranges or samples from specific probability distributions.
+Open the file `generate-grid-cli.py` and update the `hyper_params` variable to specify the hyperparameter space that you wish to cover. You can specify specific values, ranges or samples from specific probability distributions.
 
 ```python
 hyper_params = {
@@ -54,7 +54,7 @@ hyper_params = {
 After specifying the hyperparameters run the following script.
 
 ```bash
-> python generate_hyperparam_combinations.py
+> python generate-grid-cli.py
 Total number of hyperparameter sets: 4
 Hyperparameter sets saved to: hyperparams.yml
 ```
@@ -74,3 +74,31 @@ def get_hyperparameters(job_id):
    return hyper_param_set[job_id-1]["hyperparam_set"]
 ```
 
+## Step 3: Push training scripts and hyperparameters in a Git repository for tracking
+
+In order to make the hyperparameters sets inhyperparams.yml you generated in Step 2 available to all Pods once you submit jobs, you need to push the changes back to your git repository. You may be asked to provide your GitHub login details.
+
+```bash
+> git add hyperparams.yml
+> git commit -m "Updated hyperparameters. Includes 4 hyperparameter sets"
+> git push
+```
+
+## Step 4: Specify the Kubernetes Job specification files in YAML
+
+We're now ready to tell Kubernetes to run our hyperparameter sweep experiment. Kubernetes makes it very easy to spin up resources using configuration files written in YAML. Kubernetes supports both YAML and JSON, but YAML tends to be much friendlier to read and write. If you're not familiar with it, you'll see how easy it is to use.
+
+Navigate to `~/eidf-epcc-cluster/kubernetes-hyperparam-exp` and open `mnist-job-template.yml`; let's first take a look at the key parts of the template yaml spec file:
+
+```yaml
+containers:
+  - name: pytorch
+    image: nvcr.io/nvidia/pytorch:22.01-py3
+    workingDir: /mnist-training
+    env:
+    - name: JOB_ID
+      value: "$ITEM"
+    command: ["bash"]
+    args: ["-c","python cifar10_train.py"]
+    computeResourceRequests: ["nvidia-gpu"]
+```
