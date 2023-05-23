@@ -22,7 +22,7 @@ Kubernetes boils down to one key idea: infrastructure abstraction. A user should
 
 Now that we’ve briefly introduced Pods and Job resources, Let’s now dive into our example.
 
-## Hyperparameters Optimization for Training a Model on the MNIST Dataset
+## Hyperparameters Optimization for Training a Model on the MNIST Dataset
 
 In ML, hyperparameters typically include options such as learning rate schedule, batch size, data augmentation options and others. Each option greatly affects the model accuracy on the same dataset. Two of the most common strategies for selecting the best hyperparameters for a model are grid search and random search. In the grid search method  (also known as the parameter sweep method) you define the search space by enumerating all possible hyperparameter values and train a model on each set of values. Random search only select random sets of values sampled from the exhaustive set. The results of each training run are then validated against a separate validation set.
 
