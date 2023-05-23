@@ -152,3 +152,15 @@ In the template is a unique placeholder called `$ITEM`. Running the `create_jobs
 > ls hyperparam-jobs-specs 
 README.md	mnist-job-1.yml	mnist-job-2.yml	mnist-job-3.yml	mnist-job-4.yml
 ```
+
+The above code snippet generates 4 separate job specification files. Each file has a unique name and a unique environment variable that enables each worker to query a hyperparameter set based on its `$JOB_ID`.
+
+To submit a job on the EIDF cluster, just run:
+
+```bash
+> kubectl create -f hyperparam-jobs-specs/
+job.batch "mnist-single-job-1" created
+job.batch "mnist-single-job-2" created
+job.batch "mnist-single-job-3" created
+[..]
+```
