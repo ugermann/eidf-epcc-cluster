@@ -1,8 +1,0 @@
-- hyperparam_set:
-    batch_size: 32
-- hyperparam_set:
-    batch_size: 64
-- hyperparam_set:
-    batch_size: 128
-- hyperparam_set:
-    batch_size: 512
