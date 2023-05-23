@@ -43,7 +43,7 @@ Assuming you’ve already started by setting up a Kubernetes cluster, our soluti
 
 ## Step 1: Specify the Hyperparam Search Space
 
-Open the file `generate_hyperparam_combinations.py` and update the `hyper_params` variable to specify the hyperparameter space that you wish to cover. You can specify specific values, ranges or samples from specific probability distributions.
+Open the file `generate-grid-cli.py` and update the `hyper_params` variable to specify the hyperparameter space that you wish to cover. You can specify specific values, ranges or samples from specific probability distributions.
 
 ```python
 hyper_params = {
@@ -54,7 +54,7 @@ hyper_params = {
 After specifying the hyperparameters run the following script.
 
 ```bash
-> python generate_hyperparam_combinations.py
+> python generate-grid-cli.py
 Total number of hyperparameter sets: 4
 Hyperparameter sets saved to: hyperparams.yml
 ```
@@ -73,4 +73,76 @@ def get_hyperparameters(job_id):
       hyper_param_set = yaml.load(stream)
    return hyper_param_set[job_id-1]["hyperparam_set"]
 ```
+
+## Step 3: Push training scripts and hyperparameters in a Git repository for tracking
+
+In order to make the hyperparameters sets inhyperparams.yml you generated in Step 2 available to all Pods once you submit jobs, you need to push the changes back to your git repository. You may be asked to provide your GitHub login details.
+
+```bash
+> git add hyperparams.yml
+> git commit -m "Updated hyperparameters. Includes 4 hyperparameter sets"
+> git push
+```
+
+## Step 4: Specify the Kubernetes Job specification files in YAML
+
+We're now ready to tell Kubernetes to run our hyperparameter sweep experiment. Kubernetes makes it very easy to spin up resources using configuration files written in YAML. Kubernetes supports both YAML and JSON, but YAML tends to be much friendlier to read and write. If you're not familiar with it, you'll see how easy it is to use.
+
+Navigate to `~/eidf-epcc-cluster/kubernetes-hyperparam-exp` and open `mnist-job-template.yml`; let's first take a look at the key parts of the template yaml spec file:
+
+```yaml
+containers:
+  - name: pytorch
+    image: nvcr.io/nvidia/pytorch:22.01-py3
+    workingDir: /mnist-training
+    env:
+    - name: JOB_ID
+      value: "$ITEM"
+    command: ["bash"]
+    args: ["-c","python main.py"]
+    computeResourceRequests: ["nvidia-gpu"]
+```
+
+In this example, each job runs a single container. We specify that Kubernetes needs to pull the PyTorch container from the NVIDIA GPU Cloud (NGC) container registry. Next we specify an environment variable called `JOB_ID`, with a value currently called `$ITEM`. This placeholder will get replaced by a unique number for each Job.
+
+Command and `args` tells Kubernetes which command to run inside the container. Notice that every container runs the same `main.py` script. So how does each worker know what hyperparameter set to choose and run?
+
+This is where the environment variable `$JOB_ID` comes in. Kubernetes introduces an environment variable in each container and  `main.py` will read the environment variable and pick the corresponding hyperparameter set from `hyperparams.yml`.
+
+```yaml
+volumes:
+- name: mnist-training
+  gitRepo:
+    repository: https://github.com/EdinburghNLP/eidf-epcc-cluster.git
+    revision: master
+    directory: .
+```
+
+When Kubernetes starts a container on a worker node, it starts of with the exact same files that were added to the container image during build time. Since we’re pulling a PyTorch container image from NGC, the container only contains PyTorch and it’s supporting libraries. Kubernetes volumes allow us to mount a temporary or external storage volume in the container, and make it available to your application. In the snippet above, we specify one type of volume:
+
+- **gitRepo**: This instructs Kubernetes to initialize a local volume and checkout the contents specified in the `repository` URL. Be sure to update the URL to match your personal GitHub repo that contains your changes.
+
+```yaml
+computeResources:
+  - name: "nvidia-gpu"
+  resources:
+    limits:
+      nvidia.com/gpu: 1
+```
+
+Finally, we specify the compute resources for each training run. In this example, we use only one GPU per training run using one set of hyperparameters. If the training code supports multi-GPU training and you have more than one GPU available, then you can increase the number of GPUs here. Kubernetes will automatically find a node with the requested number of GPUs and schedule the job there.
+
+## Step 5: Submit Multiple Kubernetes Job Requests
+
+In our example, we run multiple Kubernetes Jobs – one job per hyperparameter set – each with a unique identifier, so that no two jobs run on the same hyperparameter set specified in `hyperparams.yml` we created in Step 1.
+
+To achieve this, we’ll use the [Parallel Processing using Expansions](https://kubernetes.io/docs/tasks/job/parallel-processing-expansion/) approach described in the Kubernetes documentation. The idea is that you create a template (`mnist-job-template.yml`) that describes the job that we need to run.
+
+```yaml
+env:
+  - name: JOB_ID
+    value: "$ITEM"
+```
+
+In the template is a unique placeholder called `$ITEM`. Running the `create_jobs.sh` script (as shown below) expands the template into multiple Job specification files, one for each hyperparameter set to be trained on. `$ITEM` in each generated Job specification file will replaced by a unique Job number.
 
