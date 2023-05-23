@@ -55,7 +55,7 @@ After specifying the hyperparameters run the following script.
 
 ```bash
 > python generate_hyperparam_combinations.py
-Total number of hyperparameter sets: 16
+Total number of hyperparameter sets: 4
 Hyperparameter sets saved to: hyperparams.yml
 ```
 
