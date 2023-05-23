@@ -88,7 +88,7 @@ In order to make the hyperparameters sets inhyperparams.yml you generated in Ste
 
 We're now ready to tell Kubernetes to run our hyperparameter sweep experiment. Kubernetes makes it very easy to spin up resources using configuration files written in YAML. Kubernetes supports both YAML and JSON, but YAML tends to be much friendlier to read and write. If you're not familiar with it, you'll see how easy it is to use.
 
-Navigate to `~/eidf-epcc-cluster/kubernetes-hyperparam-exp` and open `mnist-job-template.yml`; let's first take a look at the key parts of the template yaml spec file:
+Navigate to `~/eidf-kubernetes-example/kubernetes-hyperparam-exp` and open `mnist-job-template.yml`; let's first take a look at the key parts of the template yaml spec file:
 
 ```yaml
 containers:
@@ -113,7 +113,7 @@ This is where the environment variable `$JOB_ID` comes in. Kubernetes introduces
 volumes:
 - name: mnist-training
   gitRepo:
-    repository: https://github.com/EdinburghNLP/eidf-epcc-cluster.git
+    repository: https://github.com/pminervini/eidf-kubernetes-example.git
     revision: master
     directory: .
 ```
