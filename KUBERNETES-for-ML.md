@@ -41,3 +41,36 @@ Assuming you’ve already started by setting up a Kubernetes cluster, our soluti
 - Submit multiple Kubernetes job requests (one per hyperparameter set) using above specification template;
 - Analyze the results and pick the hyperparameter set.
 
+## Step 1: Specify the Hyperparam Search Space
+
+Open the file `generate_hyperparam_combinations.py` and update the `hyper_params` variable to specify the hyperparameter space that you wish to cover. You can specify specific values, ranges or samples from specific probability distributions.
+
+```python
+hyper_params = {
+    'batch_size': [32, 64, 128, 512],
+}
+```
+
+After specifying the hyperparameters run the following script.
+
+```bash
+> python generate_hyperparam_combinations.py
+Total number of hyperparameter sets: 4
+Hyperparameter sets saved to: hyperparams.yml
+```
+
+This should generate a YAML file called `hyperparams.yml`, a plain text file which stores all the hyperparameter sets. This is the most important file in this example since each Kubernetes Pod will read this file and pick one hyperparameter set to run training on as illustrated in the following figure.
+
+![image](https://github.com/EdinburghNLP/eidf-epcc-cluster/assets/227357/cf2de83d-ae0e-4b3d-97d6-fedf5185c607)
+
+## Step 2: Develop a Training Script
+
+Now let's train a neural network on the MNIST dataset. When the training script executes on a Kubernetes worker node, it queries its unique job_id from an environment variable called JOB_ID which is unique to each Kubernetes Job. It then reads hyperparams.yml and returns the hyperparameter set corresponding the job id: `hyper_param_set[job_id-1]["hyperparam_set"]`
+
+```python
+def get_hyperparameters(job_id):
+   with open("hyperparams.yml", 'r') as stream:
+      hyper_param_set = yaml.load(stream)
+   return hyper_param_set[job_id-1]["hyperparam_set"]
+```
+
