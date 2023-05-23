@@ -164,3 +164,9 @@ job.batch "mnist-single-job-2" created
 job.batch "mnist-single-job-3" created
 [..]
 ```
+
+As a user, you simply submit your jobs using the command above and Kubernetes will take care of scheduling and running them. You can verify what pods are running by issuing the following command on the master:
+
+```bash
+> kubectl get pods
+```
