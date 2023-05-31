@@ -172,3 +172,9 @@ As a user, you simply submit your jobs using the command above and Kubernetes wi
 ```bash
 > kubectl get pods
 ```
+
+## Some Useful Tools
+
+- https://github.com/BayesWatch/kubeproject for general kubectl stuff and understanding what’s going on.
+- https://github.com/AntreasAntoniou/kubejobs for python-based kubernetes job launching that covers a lot of options for the yaml — but in python class format.
+- https://github.com/AntreasAntoniou/minimal-ml-template/tree/main/kubernetes for a minimal ml projects that can run on a Kubernetes cluster.
