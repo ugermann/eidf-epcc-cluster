@@ -64,6 +64,15 @@ Full Documentation on signing up at [EIDF Documentation](https://epcced.github.i
 ```
 ssh -J USERNAME@eidf-gateway.epcc.ed.ac.uk USERNAME@10.24.5.121
 ```
+Alternatively, you can edit the `.ssh/config` file (useful for VSCode)
+```
+Host eidf
+    User USERNAME
+    IdentityFile PATH-TO-KEY
+    HostName 10.24.5.121
+    ProxyJump USERNAME@eidf-gateway.epcc.ed.ac.uk
+```
+and access the cluster by `ssh eidf`.
 
 ## Kubectl get nodes
 ( *NB*: This currently fails, but is not needed)
