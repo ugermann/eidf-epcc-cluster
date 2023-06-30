@@ -43,6 +43,9 @@ Assuming you’ve already started by setting up a Kubernetes cluster, our soluti
 - Submit multiple Kubernetes job requests (one per hyperparameter set) using above specification template;
 - Analyze the results and pick the hyperparameter set.
 
+
+You can find the files for this tutorial at [https://github.com/pminervini/eidf-kubernetes-example](https://github.com/pminervini/eidf-kubernetes-example).
+
 ## Step 1: Specify the Hyperparam Search Space
 
 Open the file `generate-grid-cli.py` and update the `hyper_params` variable to specify the hyperparameter space that you wish to cover. You can specify specific values, ranges or samples from specific probability distributions.
