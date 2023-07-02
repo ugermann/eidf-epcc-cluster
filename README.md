@@ -1,6 +1,6 @@
 # eidf-epcc-cluster
 
-Additional documentation from the team managing EIDF is available at https://git.ecdf.ed.ac.uk/gpu_cluster_support/eidf.gpu.cluster.docs. If you don't have access to that repository, you can get in touch with the EIDF service desk at https://www.ed.ac.uk/edinburgh-international-data-facility/services/computing/gpu-cluster and request access.
+Additional documentation from the team managing the EIDF Cluster is available at https://git.ecdf.ed.ac.uk/gpu_cluster_support/eidf.gpu.cluster.docs. If you don't have access to that repository, you can get in touch with the EIDF service desk at https://www.ed.ac.uk/edinburgh-international-data-facility/services/computing/gpu-cluster and request access.
 
 About running ML/NLP experiments on a Kubernetes cluster -- we prepared an introductory guide available at this link: https://github.com/EdinburghNLP/eidf-epcc-cluster/blob/main/KUBERNETES-for-ML.md -- if you find that anything is missing from that guide, please feel free to add to it (you all have write access) or, if you are unable of doing so, please open an issue.
 
