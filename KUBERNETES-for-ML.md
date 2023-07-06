@@ -2,21 +2,21 @@ This guide is a work in progress -- if for some reason it doesn't work for you, 
 
 # Kubernetes for ML/NLP Experiments
 
-![image](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/assets/227357/60cc6f3e-6bf2-4508-9b74-05ddadc028c0)
+![image](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/assets/227357/b3c74557-29ec-40ed-9d84-f88693055ae8)
 
 If you’re new to Kubernetes, you can think of it as the operating system that runs on your cluster.
 
-Just like how the operating system abstracts away the various hardware resources, Kubernetes does the same with a cluster and abstracts away details about the actually infrastructure setup. This offers users a consistent runtime and development environment for a cluster, similar to locally-hosted operating systems. Data scientists and developers don’t have to worry about infrastructure-related issues. They can focus on their apps and let Kubernetes manage the infrastructure.
+Just like how the operating system abstracts away the various hardware resources, Kubernetes does the same with a cluster and abstracts away details about the actual infrastructure setup. This offers users a consistent runtime and development environment for a cluster, similar to locally-hosted operating systems. Data scientists and developers don’t have to worry about infrastructure-related issues. They can focus on their apps and let Kubernetes manage the infrastructure.
 
 Before we jump into how we can use Kubernetes to run large-scale AI experiments, let’s introduce a few key concepts you should know as you follow along with the example.
 
 ## Containers, Pods, and Jobs
 
-The basic deployable unit in Kubernetes is called a Pod. A Pod contains one or more processes in co-located containers which share the same volumes, IP address, and namespace. A pod never spans multiple nodes. For a training workload, a Pod may only consist of one container running your favourite deep learning framework as illustrated in thw following figure.
+The basic deployable unit in Kubernetes is called a Pod. A Pod contains one or more processes in co-located containers which share the same volumes, IP address, and namespace. A pod never spans multiple nodes. For a training workload, a Pod may only consist of one container running your favourite deep learning framework, as illustrated in the following figure.
 
-![image](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/assets/227357/1bdeaa3f-fa03-4747-930c-127c14f599c3)
+![image](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/assets/227357/fef6838f-c9dd-46f9-8e70-fdd015ae14f8)
 
-A Pod is an unmanaged resource in Kubernetes. This means if a failure occurs, the pod simply ceases to exist. Therefore, we can introduce a resource manager called Job, which is responsible for automatically rescheduling failed pods onto different nodes. Job resources are useful for workloads that go to completion like a training job.
+A Pod is an unmanaged resource in Kubernetes. This means if a failure occurs, the pod simply ceases to exist. Therefore, we can introduce a resource manager called Job, which is responsible for automatically rescheduling failed pods onto different nodes. Job resources are useful for workloads that go to completion, like a training job.
 
 A Pod can also have multiple containers to run processes like data pre- and post-processing for inference deployments. Inference workloads typically run as highly available services, running as continuous tasks that are never considered complete. A different resource manager called ReplicaSet can make sure that specified replicas of this job are always available and running forever unless terminated by the user.
 
@@ -64,9 +64,9 @@ Total number of hyperparameter sets: 4
 Hyperparameter sets saved to: hyperparams.yml
 ```
 
-This should generate a YAML file called `hyperparams.yml`, a plain text file which stores all the hyperparameter sets. This is the most important file in this example since each Kubernetes Pod will read this file and pick one hyperparameter set to run training on as illustrated in the following figure.
+This should generate a YAML file called `hyperparams.yml`, a plain text file which stores all the hyperparameter sets. This is the most important file in this example since each Kubernetes Pod will read this file and pick one hyperparameter set to run training on, as illustrated in the following figure.
 
-![image](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/assets/227357/cf2de83d-ae0e-4b3d-97d6-fedf5185c607)
+![image](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/assets/227357/ea65e97f-2544-4318-82cc-47f020f1cba2)
 
 ## Step 2: Develop a Training Script
 
