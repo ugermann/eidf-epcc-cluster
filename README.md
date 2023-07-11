@@ -187,3 +187,7 @@ Follow [this](https://github.com/AntreasAntoniou/minimal-ml-template/tree/main/k
 - https://github.com/BayesWatch/kubeproject for general kubectl stuff and understanding what’s going on.
 - https://github.com/AntreasAntoniou/kubejobs for python-based kubernetes job launching that covers a lot of options for the yaml — but in python class format.
 - https://github.com/AntreasAntoniou/minimal-ml-template/tree/main/kubernetes for a minimal ml projects that can run on a kubernetes cluster
+
+## Acknowledging EIDF in your work
+
+More details [here](https://epcced.github.io/eidf-docs/overview/acknowledgements/)
