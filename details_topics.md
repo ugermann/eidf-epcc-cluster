@@ -23,6 +23,7 @@
       - [Denied] Autoterminating jobs with GPU utilization under a specific amount (i.e. Checking GPU utilization with `nvidia-smi` and killing jobs not hitting a threshold).
       - Having multiple job length bands, each user can only use a certain number of nodes for each band (e.g. 12 hours, 72 hours, 7 days).
       - Rather than autoterminating jobs based on GPU utilization, maybe just give the users a report of their weekly/daily usage so they know to improve, but without it being forced as a limitation.
+      - Have a means to have a zero GPU machine for file transfers or hosting.
 
 ### Subtopic B: Development Nodes
    - **Nuance:** Utilization of N-GPU nodes for debugging purposes.
