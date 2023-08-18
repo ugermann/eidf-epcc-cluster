@@ -10,6 +10,7 @@
       - For any policies that relate to the community, the votes will be what decides if a new policy will be installed.
       - For any policies that require the direct agreement of the EIDF folks, the opinions and votes will be presented, and a case will be made. The final say will come directly from the EIDF people.
       - All Hands-on Board Meetings once every 3 months, or, as needed depending on demand.
+      - **Pizza party once a month**.
 
 ## 2. **Better Resource Utilization**
 
@@ -76,7 +77,12 @@
       - **Support Availability:** Proposal to have at least one staff member available on Slack to respond within 2 hours of a request or less.
       - **Privilege Elevation:** Discussion about granting higher privilege status to certain community members to quickly resolve issues, while adhering to the necessary security and policy considerations.
 
-
+## 11. **Having a well defined process for data transfer from university machines to the cluster**
+**Nuance:** We lack a well defined method for data transfer, forcing users to use the login node as an intermediary, or, altogether to store the data on the internet to be downloaded. 
+**Existing ideas**:
+ - Upload data on the internet, somewhere like huggingface or github or gdrive and then download on nodes.
+ - We need something that uses the university network instead for more speed
+ - Ideally, there should be an official process for cloning PVCs.
 
 ## Next Steps
 Following the meeting, the decisions reached will be documented and shared with the entire community. The new policies will be proposed to the EIDF staff members and a decision will be made by them, the details of which will be shared with the community. Implementation will proceed in accordance with the agreed-upon policies and
