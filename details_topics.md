@@ -20,8 +20,9 @@
       - Preventing hoarding of resources with low GPU utilization.
       - Preventing users from hoarding nodes by having extremely long job durations (this may circumvent any priority-scheduling system hence why it needs its own way of prevention) 
    - **Existing Ideas:**
-      - Autoterminating jobs with GPU utilization under a specific amount (i.e. Checking GPU utilization with `nvidia-smi` and killing jobs not hitting a threshold).
+      - [Denied] Autoterminating jobs with GPU utilization under a specific amount (i.e. Checking GPU utilization with `nvidia-smi` and killing jobs not hitting a threshold).
       - Having multiple job length bands, each user can only use a certain number of nodes for each band (e.g. 12 hours, 72 hours, 7 days).
+      - Rather than autoterminating jobs based on GPU utilization, maybe just give the users a report of their weekly/daily usage so they know to improve, but without it being forced as a limitation.
 
 ### Subtopic B: Development Nodes
    - **Nuance:** Utilization of N-GPU nodes for debugging purposes.
