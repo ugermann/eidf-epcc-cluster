@@ -179,7 +179,11 @@ number of bodies = 512000
 = 7439.679 double-precision GFLOP/s at 30 flops per interaction
 ```
 10. delete your pod with `kubectl delete pod sample-7gdtb`
-	
+
+## Kubectl Secret Management
+
+For many jobs it may be necessary to leverage kubectl secrets (e.g. to pull a private image). Each user account has access to create their own secrets directly via the CLI using `kubectl create secret`. In order to help maintain secrets associated to the cluster, we ask that users preface their secrets with a unique identifier (e.g. student number). For instance a secret for authenticating into a private GitHub container registry might follow the template <unique_id>-ghcr-secret which could look like s1234567-ghcr-secret (note: in this case the word secret is superfluous in the secret name and could be dropped). 
+
 ## Running your own experiments
 	
 Follow [this](https://github.com/AntreasAntoniou/minimal-ml-template/tree/main/kubernetes) guide to get started, and check the following tools from the amazing @AntreasAntoniou:
