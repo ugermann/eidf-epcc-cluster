@@ -4,6 +4,8 @@ Additional documentation from the team managing the EIDF Cluster is available at
 
 About running ML/NLP experiments on a Kubernetes cluster -- we prepared an introductory guide available [here](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/blob/main/KUBERNETES-for-ML.md) -- if you find that anything is missing from that guide, please feel free to add to it (you all have write access) or, if you are unable of doing so, please open an issue.
 
+We now also have a Slack channel for the EIDF cluster! You can join by following [this link](https://join.slack.com/t/slack-czc7871/shared_invite/zt-1wmdgxikm-KTGKTHF2Ez1s0zS0lziF9g)
+
 - ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) **WARNING** the cluster does not have any quota or permission management at the moment, so please **behave** and don't hoard resources or make life harder for other users, or we will have to restrict your access.
 
 # EIDF EPCC Cluster -- Guide for new users
