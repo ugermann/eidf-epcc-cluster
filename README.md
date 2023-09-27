@@ -1,6 +1,6 @@
 # eidf-epcc-cluster
 
-Additional documentation from the team managing the EIDF Cluster is available at [this link](https://git.ecdf.ed.ac.uk/gpu_cluster_support/eidf.gpu.cluster.docs). If you don't have access to that repository, you can get in touch with the EIDF service desk (see [this link](https://www.epcc.ed.ac.uk/contact)) and request access. Likewise, if you need to flag problems with the cluster, please get in touch with the helpdesk at [this link](https://www.epcc.ed.ac.uk/contact).
+Additional documentation from the team managing the EIDF Cluster is available at [this link](https://git.ecdf.ed.ac.uk/gpu_cluster_support/eidf.gpu.cluster.docs). If you don't have access to that repository, you can use [this link](https://epcced.github.io/eidf-docs/services/gpuservice/). Likewise, if you need to flag problems with the cluster, please get in touch with the helpdesk at [this link](https://www.epcc.ed.ac.uk/contact).
 
 About running ML/NLP experiments on a Kubernetes cluster -- we prepared an introductory guide available [here](https://github.com/uoe-eidf-cluster-users/eidf-epcc-cluster/blob/main/KUBERNETES-for-ML.md) -- if you find that anything is missing from that guide, please feel free to add to it (you all have write access) or, if you are unable of doing so, please open an issue.
 
@@ -53,11 +53,12 @@ Full Documentation on signing up at [EIDF Documentation](https://epcced.github.i
 4. Choose from the list "eidf029 - Informatics K8s Support"
 5. Click your account user name from your Account
 6. Click to view your initial password and copy/note it
-7. Click VDI Login
-8. From the project list of VMs, choose eidf029-host1_ssh
-9. Enter your username
-10. Enter the initial password
-11. At the change prompt follow the instructions.
+7. Upload your SSH public key to "Credentials" 
+8. Click VDI Login
+9. From the project list of VMs, choose eidf029-host1_ssh
+10. Enter your username
+11. Enter the initial password
+12. At the change prompt follow the instructions.
 
 ## New User Login
 
@@ -76,23 +77,7 @@ Host eidf
 ```
 and access the cluster by `ssh eidf`.
 
-## Kubectl get nodes
-( *NB*: This currently fails, but is not needed)
-
-1. Run `kubectl get nodes`
-2. Output should look like:
-
-```bash
-NAME       STATUS   ROLES                      AGE   VERSION
-gpu-vm00   Ready    controlplane,etcd,worker   21d   v1.24.4
-gpu-vm01   Ready    controlplane,etcd,worker   21d   v1.24.4
-gpu-vm02   Ready    controlplane,etcd,worker   21d   v1.24.4
-gpu-vm03   Ready    worker                     21d   v1.24.4
-gpu-vm04   Ready    worker                     21d   v1.24.4
-gpu-vm05   Ready    worker                     21d   v1.24.4
-gpu-vm06   Ready    worker                     21d   v1.24.4
-gpu-vm07   Ready    worker                     21d   v1.24.4
-```
+You can run `kubectl get pods` to check that the kubeconfig is recognised.
 
 ## Run a pod
 
