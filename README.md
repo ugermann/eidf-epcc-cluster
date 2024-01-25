@@ -101,7 +101,15 @@ You can run `kubectl get pods` to check that the kubeconfig is recognised.
 ```
 
 3. Save the file and exit the editor
-4. Run `kubectl create -f test_NBody.yml'
+4. Run `kubectl create -f test_NBody.yml -l eidf/user=$(whoami)`
+
+   As of February 2024 (this is an requirement specific to the School of Informatics), you must provide the label `eidf/user` pointing to your user name. You can do this via `-l eidf/user=$(whoami)` as above, or put this into your `*.yml` file in the metadata section like this:
+   ```
+   metadata:
+     generateName: sample-
+     labels:
+        eidf/user: <your user name on the EIDF head node>
+   ```
 5. This will output something like:
 
 ```bash
