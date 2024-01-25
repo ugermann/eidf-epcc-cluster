@@ -90,7 +90,7 @@ You can run `kubectl get pods` to check that the kubeconfig is recognised.
  metadata:
    generateName: sample-
  spec:
-   restartPolicy: OnFailure
+   restartPolicy: Never
    containers:
    - name: cudasample
      image: nvcr.io/nvidia/k8s/cuda-sample:nbody-cuda11.7.1
