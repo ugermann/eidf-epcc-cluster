@@ -79,6 +79,52 @@ and access the cluster by `ssh eidf`.
 
 You can run `kubectl get pods` to check that the kubeconfig is recognised.
 
+## Downloading Kubernetes on the Cluster (If Needed)
+Steps 1-5 are based on the official Kubernetes website: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+1. Download the Kubernetes command-line tool `kubectl` using the following command:
+```
+curl -LO https://dl.k8s.io/release/v1.29.1/bin/linux/arm64/kubectl
+```
+
+2. To validate the binary:
+```
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+```
+
+3. To verify that the downloaded binary matches the checksum:
+```
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+```
+If the binary is valid, the output will display: `kubectl: OK`
+
+4. Install Kubernetes:
+```
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+5. To confirm that kubectl is installed correctly and is up to date, run:
+```
+kubectl version --client
+```
+
+6. Set up Kubernetes configuration:
+```
+export KUBECONFIG=/kubernetes/config
+```
+
+7. When running kubectl commands, specify the namespace with the --namespace flag:
+```
+[command] --namespace eidf097ns
+```
+Replace [command] with the specific kubectl command you wish to run.
+
+8. Alternatively, create an alias for convenience:
+```
+k = "kubectl --namespace eidf097ns"
+```
+For steps 7-8, Remember to replace eidf097ns with the actual namespace you are working with.
+
 ## Run a pod
 
 1. open editor of your choice to create the file test_NBody.yml
