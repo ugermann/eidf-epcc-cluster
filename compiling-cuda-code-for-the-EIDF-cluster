@@ -1,0 +1,5 @@
+# Compiling CUDA code in C++ for use on the EIDF cluster
+
+As you already will have noticed by the time to get to this page, interacting with the EIDF cluster is a bit more involved 
+that what you may be used to, and there are tradeoffs between efficient use of the cluster and your personal convenience. 
+For cluster efficiency, most of the non-GPU work will be done outside EIDF and provided as part of the underlying Docker images.
