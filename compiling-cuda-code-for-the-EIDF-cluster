@@ -5,4 +5,4 @@ that what you may be used to, and there are tradeoffs between efficient use of t
 For cluster efficiency, most of the non-GPU work will be done outside EIDF and provided as part of the underlying Docker images.
 
 Start with an appropriate nvidia image; see the list here: https://hub.docker.com/r/nvidia/cuda/tags
-We assume an ubunut-based image here.
+We assume an ubunut-based image here, e.g. nvidia/cuda:12.3.2-cudnn9-devel-ubuntu20.04
